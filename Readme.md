@@ -52,9 +52,9 @@ In order to install waves with the package, pack it first and then run with
 
 sudo sbt debian:packageBin
 
-sudo dpkg -i target/<waves db package>
+sudo dpkg -i target/waves_db_package.deb
 
-<waves db package> to be found in /target
+waves_db_package.deb to be found in /target (look closely the current version)
 
 waves waves-testnet.json
 
