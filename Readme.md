@@ -37,15 +37,11 @@ apt-get install sbt
 For testnet:
 Please, put your own walletSeed string into waves-testnet.json
 
-# Ubuntu
-
-//Download deb package from [releases](https://github.com/ScorexProject/PermaScorex/releases), install it, run "perma-windows settings.json".
-
 # Other system
 
 Compile code and run your node by typing `sbt start` 
 
-# Create package
+# Create package - recommended
 
 For now it is only possible to create deb package with (sudo) `sbt debian:packageBin` command. 
 In order to install waves with the package, pack it first and then run with
