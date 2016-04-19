@@ -5,11 +5,13 @@ import com.typesafe.config.ConfigFactory
 import scorex.account.Account
 import scorex.api.http._
 import scorex.app.ApplicationVersion
+import scorex.block.Block
 import scorex.consensus.nxt.NxtLikeConsensusModule
 import scorex.consensus.nxt.api.http.NxtConsensusApiRoute
 import scorex.network.{TransactionalMessagesRepo, UnconfirmedPoolSynchronizer}
 import scorex.transaction.{BalanceSheet, GenesisTransaction, SimpleTransactionModule, Transaction}
 import scorex.utils.ScorexLogging
+import scorex.waves.block.WavesBlock
 import scorex.waves.http.{DebugApiRoute, ScorexApiRoute}
 import scorex.waves.settings.WavesSettings
 import scorex.waves.transaction.WavesTransactionModule
@@ -73,6 +75,14 @@ class Application(val settingsFilename: String) extends scorex.app.Application {
   require(transactionModule.accountWatchingSupport)
 
   actorSystem.actorOf(Props(classOf[UnconfirmedPoolSynchronizer], this))
+
+  override def checkGenesis(): Unit = {
+
+    if (transactionModule.blockStorage.history.isEmpty) {
+      transactionModule.blockStorage.appendBlock(WavesBlock.genesis())
+      log.info("Genesis block has been added to the state")
+    }
+  }
 
 }
 
