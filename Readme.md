@@ -8,6 +8,21 @@ There might be several development forks at once.
 ## Installation
 # Ubuntu
 
+# Create package - recommended
+
+For now it is only possible to create deb package with (sudo) `sbt debian:packageBin` command. 
+In order to install waves with the package, pack it first and then run with
+
+sudo sbt debian:packageBin
+
+sudo dpkg -i target/waves_db_package.deb
+
+waves_db_package.deb to be found in /target (look closely the current version)
+
+waves waves-testnet.json
+
+# Prerequisites
+
 Ubuntu Server
 Install Oracle Java8 JDK:
 
@@ -41,18 +56,7 @@ Please, put your own walletSeed string into waves-testnet.json
 
 Compile code and run your node by typing `sbt start` 
 
-# Create package - recommended
 
-For now it is only possible to create deb package with (sudo) `sbt debian:packageBin` command. 
-In order to install waves with the package, pack it first and then run with
-
-sudo sbt debian:packageBin
-
-sudo dpkg -i target/waves_db_package.deb
-
-waves_db_package.deb to be found in /target (look closely the current version)
-
-waves waves-testnet.json
 
 
 You can edit folders / other settings in settings.json file before running commands above.
